@@ -2,7 +2,7 @@ import numpy as np
 import scipy.sparse as sps
 from scipy.sparse.linalg import spsolve
 
-from lsdo_geo.cython.basis_matrix_curve_py import get_basis_curve_matrix
+from lsdo_b_splines_cython.cython.basis_matrix_curve_py import get_basis_curve_matrix
 
 
 def get_lsq_fit(

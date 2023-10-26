@@ -1,7 +1,7 @@
 import numpy as np
 cimport numpy as np
 
-from lsdo_geo.cython.basis_matrix_volume cimport get_basis_volume_matrix
+from lsdo_b_splines_cython.cython.basis_matrix_volume cimport get_basis_volume_matrix
 
 
 def get_basis_volume_matrix(
