@@ -1,29 +1,69 @@
 from setuptools import setup, find_packages
 
-import codecs
-import os.path
+import sys
+import numpy as np
 
-def read(rel_path):
-    here = os.path.abspath(os.path.dirname(__file__))
-    with codecs.open(os.path.join(here, rel_path), 'r') as fp:
-        return fp.read()
+from setuptools import setup, Extension
+from Cython.Build import cythonize
 
-def get_version(rel_path):
-    for line in read(rel_path).splitlines():
-        if line.startswith('__version__'):
-            delim = '"' if '"' in line else "'"
-            return line.split(delim)[1]
-    else:
-        raise RuntimeError("Unable to find version string.")
+compile_args = []
+
+if sys.platform.startswith('darwin'):
+    compile_args=['-std=c++17', '-stdlib=libc++']
+else:
+    compile_args=['-std=c++17']
+
+list_of_pyx_names = [
+    ('cython', 'get_open_uniform'),
+    ('cython', 'get_open_uniform_py'),
+    ('cython', 'basis0'),
+    ('cython', 'basis1'),
+    ('cython', 'basis2'),
+    ('cython', 'basis_matrix_curve'),
+    ('cython', 'basis_matrix_curve_py'),
+    ('cython', 'basis_matrix_surface'),
+    ('cython', 'basis_matrix_surface_py'),
+    ('cython', 'basis_matrix_volume'),
+    ('cython', 'basis_matrix_volume_py'),
+    ('cython', 'surface_projection'),
+    ('cython', 'surface_projection_py'),
+    ('cython', 'volume_projection'),
+    ('cython', 'volume_projection_py'),
+    ('cython', 'curve_projection'),
+    ('cython', 'curve_projection_py'),
+]
+
+ext_modules = []
+packages = []
+for name_list in list_of_pyx_names:
+    ext_name = 'lsdo_b_splines_cython'
+    source_name = 'lsdo_b_splines_cython'
+    packages.append('{}.{}'.format('lsdo_b_splines_cython', name_list[0]))
+    for name_part in name_list:
+        ext_name = '{}.{}'.format(ext_name, name_part)
+        source_name = '{}/{}'.format(source_name, name_part)
+    source_name = source_name + '.pyx'
+    ext_modules = ext_modules + cythonize(
+        Extension(
+            name=ext_name,
+            sources=[source_name],
+            language='c++',
+            extra_compile_args=compile_args,
+            include_dirs=[np.get_include()],
+        ),
+        annotate=True,
+        build_dir='build',
+    )
+
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='lsdo_project_template',
-    version=get_version('lsdo_project_template/__init__.py'),
-    author='Author name',
-    author_email='author@gmail.com',
+    name='lsdo_b_splines_cython',
+    version='1.0.0',
+    author='Andrew Fletcher',
+    author_email='afletcher168@gmail.com',
     license='LGPLv3+',
     keywords='python project template repository package',
     url='http://github.com/LSDOlab/lsdo_project_template',
@@ -38,14 +78,14 @@ setup(
         'numpy',
         'pytest',
         'myst-nb',
-        'sphinx==5.3.0',
         'sphinx_rtd_theme',
         'sphinx-copybutton',
-        'sphinx-autoapi==2.1.0',
-        'astroid==2.15.5',
+        'sphinx-autoapi',
         'numpydoc',
         'gitpython',
-        'sphinxcontrib-collections @ git+https://github.com/anugrahjo/sphinx-collections.git', # 'sphinx-collections',
+        'Cython==0.29.28', 
+
+        #'sphinxcontrib-collections @ git+https://github.com/anugrahjo/sphinx-collections.git', # 'sphinx-collections',
         'sphinxcontrib-bibtex',
         'setuptools',
         'wheel',
@@ -67,4 +107,5 @@ setup(
         'Topic :: Software Development :: Testing',
         'Topic :: Software Development :: Libraries',
     ],
+    ext_modules=ext_modules
 )
