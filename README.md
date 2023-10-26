@@ -1,4 +1,4 @@
-# lsdo_project_template
+# lsdo_b_splines_cython
 
 <!---
 [![Python](https://img.shields.io/pypi/pyversions/lsdo_project_template)](https://img.shields.io/pypi/pyversions/lsdo_project_template)
@@ -13,32 +13,25 @@
 [![Issues](https://img.shields.io/github/issues/LSDOlab/lsdo_project_template.svg)](https://github.com/LSDOlab/lsdo_project_template/issues)
 
 
-A template repository for LSDOlab projects
-
-This repository serves as a template for all LSDOlab projects with regard to documentation, testing and hosting of open-source code.
-Note that template users need to edit the README badge definitions for their respective packages.
-
-*README.md file contains high-level information about your package: it's purpose, high-level instructions for installation and usage.*
+A package for performing computations relating to B-splines in cython.
 
 # Installation
 
 ## Installation instructions for users
 For direct installation with all dependencies, run on the terminal or command line
 ```sh
-pip install git+https://github.com/LSDOlab/lsdo_project_template.git
-```
-If you want users to install a specific branch, run
-```sh
-pip install git+https://github.com/LSDOlab/lsdo_project_template.git@branch
+pip install git+https://github.com/LSDOlab/lsdo_b_splines_cython.git
 ```
 
 <!-- **Enabled by**: `packages=find_packages()` in the `setup.py` file. -->
 
 ## Installation instructions for developers
-To install `lsdo_project_template`, first clone the repository and install using pip.
+To install `lsdo_b_splines_cython`, first clone the repository and install using pip.
 On the terminal or command line, run
 ```sh
 git clone https://github.com/LSDOlab/lsdo_project_template.git
+pip install numpy
+pip install cython==0.29.28
 pip install -e ./lsdo_project_template
 ```
 
