@@ -32,7 +32,7 @@ On the terminal or command line, run
 git clone https://github.com/LSDOlab/lsdo_project_template.git
 pip install numpy
 pip install cython==0.29.28
-pip install -e ./lsdo_project_template
+pip install -e .
 ```
 
 # For Developers
