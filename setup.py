@@ -77,6 +77,7 @@ setup(
     install_requires=[
         'numpy',
         'pytest',
+        'cython=-0.29.28',
         'myst-nb',
         'sphinx_rtd_theme',
         'sphinx-copybutton',
