@@ -41,7 +41,7 @@ jobs:
         run: |
           pytest
 
-  wheels-macos_py38:
+  wheels-windows_py39:
     runs-on: windows-latest
     # runs-on: ${{matrix.os}}
     # strategy:
