@@ -5,15 +5,15 @@ from lsdo_b_splines_cython.cython.surface_projection cimport compute_surface_pro
 
 
 def compute_surface_projection(
-    np.ndarray[np.int64_t] surfs_order_u, np.ndarray[np.int64_t] surfs_num_coefficients_u,
-    np.ndarray[np.int64_t] surfs_order_v, np.ndarray[np.int64_t] surfs_num_coefficients_v,
+    np.ndarray[int] surfs_order_u, np.ndarray[int] surfs_num_coefficients_u,
+    np.ndarray[int] surfs_order_v, np.ndarray[int] surfs_num_coefficients_v,
     int num_points, int max_iter,
     np.ndarray[double] pts,  np.ndarray[double] cps,
     np.ndarray[double] knot_vector_u, np.ndarray[double] knot_vector_v,
     np.ndarray[double] u_vec, np.ndarray[double] v_vec,
     int guess_grid_n,
     np.ndarray[double] axis,
-    np.ndarray[np.int64_t] surfs_index,
+    np.ndarray[int] surfs_index,
     np.ndarray[double, ndim=2] surfs_cps,
 ):
     compute_surface_projection(
