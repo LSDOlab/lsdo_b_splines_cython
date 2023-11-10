@@ -8,15 +8,15 @@ from lsdo_b_splines_cython.cython.basis_matrix_surface cimport get_basis_surface
 
 
 cdef compute_surface_projection(
-    long[:] surfs_order_u, long[:] surfs_num_coefficients_u,
-    long[:] surfs_order_v, long[:] surfs_num_coefficients_v,
+    int* surfs_order_u, int* surfs_num_coefficients_u,
+    int* surfs_order_v, int* surfs_num_coefficients_v,
     int num_points, int max_iter,
     double* pts, double* cps,
     double* knot_vector_u, double* knot_vector_v,
     double* u_vec, double* v_vec,
     int guess_grid_n,
     double* axis,
-    long[:] surfs_index,
-    double[:,:] surfs_cps,
+    int* surfs_index,
+    int num_surfs,
     #double* u_vec_initial, double* v_vec_initial,
 )

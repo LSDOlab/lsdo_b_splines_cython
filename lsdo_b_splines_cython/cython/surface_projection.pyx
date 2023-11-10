@@ -1,15 +1,15 @@
 from __future__ import print_function
 cdef compute_surface_projection(
-    long[:] surfs_order_u, long[:] surfs_num_coefficients_u,
-    long[:] surfs_order_v, long[:] surfs_num_coefficients_v,
+    int* surfs_order_u, int* surfs_num_coefficients_u,
+    int* surfs_order_v, int* surfs_num_coefficients_v,
     int num_points, int max_iter,
     double* pts, double* cps,
     double* knot_vector_u, double* knot_vector_v,
     double* u_vec, double* v_vec,
     int guess_grid_n,
     double* axis,
-    long[:] surfs_index,
-    double[:,:] surfs_cps,
+    int* surfs_index,
+    int num_surfs,
     #double* u_vec_initial, double* v_vec_initial,
 ):
     cdef int i_pt, i_order_u, i_order_v, i_start_u, i_start_v
@@ -59,7 +59,8 @@ cdef compute_surface_projection(
     # get_open_uniform(order_v, num_coefficients_v, knot_vector_v)
      
     # multi surfs
-    cdef int num_surfs, num_coefficients_u, num_coefficients_v
+    # cdef int num_surfs, num_coefficients_u, num_coefficients_v
+    cdef int num_coefficients_u, num_coefficients_v
     cdef int surf_num_points = num_points
     import numpy as np
     cdef double[:] surfs_dist = np.empty(num_points, dtype=np.double)
@@ -68,7 +69,8 @@ cdef compute_surface_projection(
 
     for i in range(num_points) :
         surfs_dist[i] = 1e16
-    num_surfs = len(surfs_order_u)
+    # num_surfs = len(surfs_order_u)
+    # num_surfs = surfs_order_u.shape[0]
     #print('num_surf',num_surfs)
     for ns in range(num_surfs):
 

@@ -14,18 +14,18 @@ def compute_surface_projection(
     int guess_grid_n,
     np.ndarray[double] axis,
     np.ndarray[int] surfs_index,
-    np.ndarray[double, ndim=2] surfs_cps,
+    int num_surfs,
 ):
     compute_surface_projection(
-        surfs_order_u, surfs_num_coefficients_u,
-        surfs_order_v, surfs_num_coefficients_v,
+        &surfs_order_u[0], &surfs_num_coefficients_u[0],
+        &surfs_order_v[0], &surfs_num_coefficients_v[0],
         num_points, max_iter,
         &pts[0], &cps[0],
         &knot_vector_u[0], &knot_vector_v[0],
         &u_vec[0], &v_vec[0],
         guess_grid_n,
         &axis[0],
-        surfs_index,
-        surfs_cps,
+        &surfs_index[0],
+        num_surfs,
         #&u_vec_initial[0], &v_vec_initial[0],
     )
