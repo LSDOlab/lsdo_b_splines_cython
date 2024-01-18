@@ -13,7 +13,7 @@ on:
 # Here, we specify the automatic cloud based testing that will be ran on pushes/PRs to "main"
 jobs:
   wheels-windows_py310:
-    runs-on: windows-2019
+    runs-on: windows-latest
     # runs-on: ${{matrix.os}}
     # strategy:
     #   matrix:
