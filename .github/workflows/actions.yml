@@ -27,7 +27,7 @@ jobs:
           python-version: "3.9"
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade numpy scipy setuptools wheel cython==0.29.28
+          python -m pip install --upgrade numpy==1.26.4 scipy==1.13.1 setuptools==69.2.0 wheel==0.43.0 cython==0.29.28
 
       - name: Build wheels
         run: |
