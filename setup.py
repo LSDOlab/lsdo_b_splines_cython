@@ -75,7 +75,8 @@ setup(
     python_requires='>=3.7',
     platforms=['any'],
     install_requires=[
-        'numpy',
+        'numpy==1.26.4',    # numpy version needed for dtype specification (pls fix)
+        "scipy==1.13.1",    # sicpy version needed for compatibility with numpy
         'pytest',
         'cython==0.29.28',
         'setuptools',
